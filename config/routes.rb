@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'dashboards/show'
+  get 'shouts/create'
 
+  get 'dashboards/show'
+  resources :shouts, only: [:create]
   constraints Clearance::Constraints::SignedIn.new do
     root 'dashboards#show'
   end
