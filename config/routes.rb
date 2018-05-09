@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'shouts/create'
 
   get 'dashboards/show'
-  resources :shouts, only: [:create]
+  resources :shouts, only: [:create, :show]
   constraints Clearance::Constraints::SignedIn.new do
     root 'dashboards#show'
   end
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :passwords, controller: "passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
 
-  resources :users, only: [:create] do
+  resources :users, only: [:create, :show] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]

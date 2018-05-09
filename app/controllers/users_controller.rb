@@ -8,6 +8,10 @@ class UsersController < Clearance::UsersController
     @user = User.find_by(username: params[:id])
   end
 
+  def show
+    @user = User.find(params[:id])
+    @shouts = @user.shouts
+  end
   private
   
   def user_params

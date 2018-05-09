@@ -5,6 +5,10 @@ class ShoutsController < ApplicationController
   	redirect_to root_path, redirect_oprions_for(shout)
   end
 
+  def show
+    @shout = Shout.find(params[:id])
+  end
+  
   private
 
   def redirect_oprions_for(shout)
