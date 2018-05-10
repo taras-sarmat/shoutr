@@ -11,30 +11,23 @@ class ShoutsController < ApplicationController
   
   private
 
-  def redirect_oprions_for(shout)
-  	if shout.persisted?
-  	  { notice: "Shouted seccessfully"}
-  	else
-  	  { alert: "Could not shout"}
-  	end
-  end
-
   def shout_params
     { content: content_from_params }
   end
 
   def content_from_params
-    case params[:shout][:content_type]
-    when "TextShout" then TextShout.new(text_shout_content_params)
-    when "PhotoShout" then PhotoShout.new(photo_shout_content_params)
+    params[:content_type].new(content_params)
+  end
+
+  def content_params
+    params.require(:shout).require(:content).permit!
+  end
+
+  def redirect_to_options_for(shout)
+    if shout.persisted?
+      { notice: 'Shouted successffully' }
+    else
+      { alert: 'Could not shout' }
     end
-  end
-
-  def text_shout_content_params
-  	params.require(:shout).require(:content).permit(:body)
-  end
-
-  def photo_shout_content_params
-    params.require(:shout).require(:content).permit(:image)
   end
 end
