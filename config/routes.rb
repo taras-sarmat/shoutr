@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   get 'shouts/create'
 
   get 'dashboards/show'
-  post "text_shouts" => "shouts#create", default: { content_type: TextShout }
-  post "photo_shouts" => "shouts#create", default: { content_type: PhotoShout }
+  post 'text_shouts', to: 'shouts#create', defaults: { content_type: TextShout }
+  post 'photo_shouts', to: 'shouts#create', defaults: { content_type: PhotoShout }
 
   resources :shouts, only: [:show] do
     member do

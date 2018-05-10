@@ -2,7 +2,7 @@ class ShoutsController < ApplicationController
   
   def create
   	shout = current_user.shouts.create(shout_params)
-  	redirect_to root_path, redirect_oprions_for(shout)
+  	redirect_to root_path
   end
 
   def show
