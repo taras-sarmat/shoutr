@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   get 'shouts/create'
 
   get 'dashboards/show'
-  resources :shouts, only: [:create, :show]
+  resources :shouts, only: [:create, :show] do
+    member do
+      post "like" => "likes#create"
+      delete "unlike" => "likes#destroy"
+    end
+  end
   constraints Clearance::Constraints::SignedIn.new do
     root 'dashboards#show'
   end
