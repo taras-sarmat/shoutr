@@ -3,5 +3,8 @@
 <h1>
   <%= @user.username %>
 </h1>
+
+<%= link_to "Followers", user_followers_path(@user) %>
+
 <%= follow_button @user %>
 <%= render @shouts %>

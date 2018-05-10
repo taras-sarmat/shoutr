@@ -12,6 +12,12 @@ class User < ApplicationRecord
            dependent: :destroy  
   has_many :followed_users, through: :followed_user_relationships
 
+  has_many :followers, 
+            through: :followed_user_relationships, 
+            class_name: 'FollowingRelationship',
+            dependent: :destroy
+  has_many :follower_relations, foreign_key: :followed_user_id
+
   def like(shout)
   	liked_shouts << shout
   end
