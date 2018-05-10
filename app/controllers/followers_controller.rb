@@ -1,4 +1,5 @@
 class FollowersController < ApplicationController
+  
   def index
   	@user = find_user
   	@followers = @user.followers

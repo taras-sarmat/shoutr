@@ -1,18 +1,11 @@
 <h1>Dashboards#show</h1>
 
-<%= form_for @shout do |form| %>
-  <%= form.hidden_field :content_type, value: "TextShout" %>
-  <%= form.fields_for :content do |content_for| %>
-  	<%= content_for.text_field :body, placeholder: "shout here!", required: true %>
-  <% end %>
-  <%= form.submit "Shoult" %>
+<%= shout_form_for("TextShout") do |from| %>
+  <%= form.text_field :body, placeholder: "shout here!", required: true %>
 <% end %>
-<%= form_for @shout do |form| %>
-  <%= form.hidden_field :content_type, value: "PhotoShout" %>
-  <%= form.fields_for :content do |content_for| %>
-  	<%= content_for.file_field :image, required: true %>
-  <% end %>
-  <%= form.submit "Shoult" %>
+
+<%= shout_form_for("PhotoShout") do |from| %>
+  <%= form.file_field :image, required: true %>
 <% end %>
 
 <%= render @shouts %>
