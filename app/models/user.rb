@@ -21,10 +21,6 @@ class User < ApplicationRecord
   def like(shout)
   	liked_shouts << shout
   end
-
-  def timeline_shouts
-    Shout.where(user_id: followed_user_ids + [id])  
-  end
   
   def unlike(shout)
     liked_shouts.destroy(shout)
