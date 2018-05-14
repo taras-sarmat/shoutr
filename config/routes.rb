@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'shouts/create'
 
   get 'dashboards/show'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :hashtags, only: [:show]
   constraints Clearance::Constraints::SignedIn.new do
     root 'dashboards#show'
   end
