@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'searches/show'
+
   get 'shouts/create'
 
   get 'dashboards/show'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
       delete "unlike" => "likes#destroy"
     end
   end
-
+  resource :search , only: [:show]
   resources :hashtags, only: [:show]
   constraints Clearance::Constraints::SignedIn.new do
     root 'dashboards#show'
